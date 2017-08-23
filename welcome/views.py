@@ -1,7 +1,8 @@
 import os
+import json
 from django.shortcuts import render
 from django.conf import settings
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from . import database
 from .models import PageView
@@ -20,3 +21,7 @@ def index(request):
 
 def health(request):
     return HttpResponse(PageView.objects.count())
+
+def webhook(request):
+    return JsonResponse(json.loads(request.body))
+
