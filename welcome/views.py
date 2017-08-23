@@ -3,6 +3,7 @@ import json
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from . import database
 from .models import PageView
@@ -22,6 +23,7 @@ def index(request):
 def health(request):
     return HttpResponse(PageView.objects.count())
 
+@csrf_exempt
 def webhook(request):
     return JsonResponse(json.loads(request.body))
 
