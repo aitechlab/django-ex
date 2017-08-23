@@ -1,5 +1,6 @@
 import os
 import json
+import logging
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
@@ -9,6 +10,7 @@ from . import database
 from .models import PageView
 
 # Create your views here.
+logger = logging.getLogger(__name__)
 
 def index(request):
     hostname = os.getenv('HOSTNAME', 'unknown')
@@ -25,5 +27,7 @@ def health(request):
 
 @csrf_exempt
 def webhook(request):
-    return JsonResponse(json.loads(request.body))
+    json_string = json.loads(request.body)
+    logger.info(json_string)
+    return JsonResponse(json_string)
 
