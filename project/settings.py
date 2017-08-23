@@ -81,10 +81,16 @@ WSGI_APPLICATION = 'wsgi.application'
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
+            'formatter': 'simple',
             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
     },

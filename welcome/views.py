@@ -27,7 +27,7 @@ def health(request):
 
 @csrf_exempt
 def webhook(request):
-    json_string = json.loads(request.body)
-    logger.info(json_string)
-    return JsonResponse(json_string)
+    json_dict = json.loads(request.body)
+    logger.info(json.dumps(json_dict, indent=4))
+    return JsonResponse(json_dict)
 
