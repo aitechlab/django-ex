@@ -10,7 +10,7 @@ from . import database
 from .models import PageView
 
 # Create your views here.
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('django')
 
 def index(request):
     hostname = os.getenv('HOSTNAME', 'unknown')
